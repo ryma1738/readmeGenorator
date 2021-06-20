@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 
 const inquirer = require("inquirer");
-const generateReadme = require("./src/dev/generateReadMe");
+const generateReadme = require("./src/generateReadMe.js");
 const fs = require("fs");
 
 // TODO: Create an array of questions for user input
@@ -40,7 +40,7 @@ const questions = [
     {
         type: "input",
         name: "descriptionInstall",
-        message: "Please enter a description of how to install your project: (required)",
+        message: "Enter a description of how to install your project: (required)",
         validate: input => {
             if (input) {
               return true;
@@ -53,7 +53,7 @@ const questions = [
     {
         type: "input",
         name: "descriptionUsage",
-        message: "Please enter a description of how to use your project: (required)",
+        message: "Enter a description of how to use your project: (required)",
         validate: input => {
             if (input) {
               return true;
@@ -72,7 +72,7 @@ const questions = [
     {
         type: "input",
         name: "photo",
-        message: "Please enter the file name of the image located in ./scr/dev/assets/images",
+        message: "Enter the file name of the image located in ./scr/dev/assets/images",
         when: ({ addPhotos }) => {
             if (addPhotos) {
                 return true;
@@ -84,7 +84,7 @@ const questions = [
     {
         type: "input",
         name: "descriptionContrib",
-        message: "Please enter guidelines for people contributing to your project: (required)",
+        message: "Enter guidelines for people contributing to your project: (required)",
         validate: input => {
             if (input) {
               return true;
@@ -97,26 +97,36 @@ const questions = [
     {
         type: "input",
         name: "descriptionTesting",
-        message: "Please enter instructions for testing the project:"
+        message: "Enter instructions for testing the project:"
     },
     {
         type: "list",
-        name: "licence",
-        message: "Please chose what type of licence you would like your project to have:",
-        choices: ["MIT License", "GNU General License", "No License"],
+        name: "license",
+        message: "Chose what type of license you would like your project to have: (required)",
+        choices: ["MIT", "Apache", "GNU", "None"],
         validate: input => {
             if (input) {
               return true;
             } else {
-              console.log('Please pick a licence type!');
+              console.log('Please pick a license type!');
               return false;
             }
           }
     },
     {
         type: "input",
+        name: "name",
+        message: "Enter your full name for the copyright license: "
+    },
+    {
+        type: "input",
+        name: "company",
+        message: "Enter your company name or other identifying name for the copyright license:"
+    },
+    {
+        type: "input",
         name: "username",
-        message: "Please enter your github username: (required)",
+        message: "Enter your github username: (required)",
         validate: input => {
             if (input) {
               return true;
@@ -128,13 +138,13 @@ const questions = [
     },
     {
         type: "input",
-        name: "username",
-        message: "Please enter your github username: (required)",
+        name: "email",
+        message: "Enter your preferred email: (required)",
         validate: input => {
             if (input) {
                 return true;
             } else {
-                console.log('Please enter your github username!');
+                console.log('Please enter your Email!');
                 return false;
             }
         }
@@ -142,15 +152,23 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(data) {
+    console.log("worked")
+    const content = generateReadme(data);
+    console.log(content)
+    fs.writeFile("./src/dev/README.md", content, err => {
+        if (err) throw err;
+        console.log("README file created! find it under (./src/dev)!")
+    });
+}
 
 // TODO: Create a function to initialize app
 function init() {
     inquirer
     .prompt(questions)
-    .then((answer) => {
+    .then(answer => {
         console.log(answer);
-
+        writeToFile(answer);
     })
     .catch((error) => {
         if (error.isTtyError) {
@@ -158,7 +176,7 @@ function init() {
         } else {
             //something else went wrong
         }
-    })
+    });
 }
 
 // Function call to initialize app
