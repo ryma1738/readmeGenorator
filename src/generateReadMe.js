@@ -57,8 +57,6 @@ Licensed under the [GNU GPLv3 License](LICENSE)
     }
 }
 
-
-// TODO: Create a function to generate markdown for README
 module.exports = data => {
     return `# ${data.title}
 ##  Description

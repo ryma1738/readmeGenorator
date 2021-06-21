@@ -1,10 +1,8 @@
-// TODO: Include packages needed for this application
 
 const inquirer = require("inquirer");
 const generateReadme = require("./src/generateReadMe.js");
 const fs = require("fs");
 
-// TODO: Create an array of questions for user input
 const questions = [
     {
         type: "input",
@@ -27,7 +25,7 @@ const questions = [
             if (input) {
               return true;
             } else {
-              console.log('Please enter your github username!');
+              console.log('Please enter a description for you project!');
               return false;
             }
           }
@@ -151,7 +149,6 @@ const questions = [
     }
 ];
 
-// TODO: Create a function to write README file
 function writeToFile(data) {
     const content = generateReadme(data);
     fs.writeFile("./src/dev/README.md", content, err => { 
@@ -160,7 +157,6 @@ function writeToFile(data) {
     });
 }
 
-// TODO: Create a function to initialize app
 function init() {
     inquirer
     .prompt(questions)
@@ -169,12 +165,11 @@ function init() {
     })
     .catch((error) => {
         if (error.isTtyError) {
-            //Prompt couldn't be rendered in the current environment
+          console.log(error)
         } else {
-            //something else went wrong
+          console.log("Something went wrong! Please try again")
         }
     });
 }
 
-// Function call to initialize app
 init();
