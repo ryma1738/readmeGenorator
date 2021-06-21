@@ -33,7 +33,7 @@ files.
 ## License
 
 © Ryan Jepson, Zoru
-Licensed under the [MIT License](LICENSE)
+Licensed under the [MIT License](./src/dev/LICENSE)
         
 
 ## Questions
