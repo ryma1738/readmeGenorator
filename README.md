@@ -21,7 +21,7 @@ like for your read me. Once you are done entering in the descriptions and identi
 PLEASE NOTE if you want to add a photo to your read me, add it in to the directory: ./src/dev/assets/images. From their you can copy the dev folder and you have the start
 to your new project!
 
-![Caption](https://drive.google.com/file/d/1rZ_5-JyOOKeDotyaSvmljwMopR0On4t8/view)
+https://drive.google.com/file/d/1rZ_5-JyOOKeDotyaSvmljwMopR0On4t8/view.mp4
 
 ## Contributions
 If you would like to contribute to this project, please follow the guidelines below:
