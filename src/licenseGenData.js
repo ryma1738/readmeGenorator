@@ -1,6 +1,5 @@
 module.exports = (data, licenseType) => {
     const year = new Date().getFullYear();
-    console.log("got licence stuff")
     if (licenseType === "MIT") {
         return `MIT License
 
