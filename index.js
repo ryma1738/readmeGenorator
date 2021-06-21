@@ -153,10 +153,8 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(data) {
-    console.log("worked")
     const content = generateReadme(data);
-    console.log(content)
-    fs.writeFile("./src/dev/README.md", content, err => {
+    fs.writeFile("./src/dev/README.md", content, err => { 
         if (err) throw err;
         console.log("README file created! find it under (./src/dev)!")
     });
@@ -167,7 +165,6 @@ function init() {
     inquirer
     .prompt(questions)
     .then(answer => {
-        console.log(answer);
         writeToFile(answer);
     })
     .catch((error) => {
